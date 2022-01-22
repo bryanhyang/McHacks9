@@ -1,4 +1,6 @@
 import trainUtils.*;
+import grading.Grader;
+
 public class Main {
 	
 	final static String DATA_DIR = "./assets/in/";
@@ -15,7 +17,9 @@ public class Main {
 		} catch(Exception e) {
 			System.out.println("directory problem");
 		}
-		System.out.println(t[0].aArr);
-		System.out.println(t[0].aBoard);
+		
+		Grader g = new Grader(DATA_DIR + "passengers.csv");
+		System.out.println(g.grade(t));
+		
 	}
 }
