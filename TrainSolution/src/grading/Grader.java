@@ -1,5 +1,10 @@
 package grading;
+import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvValidationException;
 import trainUtils.*;
+
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.*;
 
 public class Grader {
@@ -8,7 +13,22 @@ public class Grader {
 	private int[][] pArrival = new int[19][3]; //number of passengers arriving at [10min interval][station]
 	
 	public Grader(String passengerCSV) {
-		
+		try{
+			FileReader file = new FileReader("../assets/in/"+passengerCSV);
+			CSVReader read = new CSVReader(file);
+			String line[];
+			int i = 0;
+			while((line = read.readNext()) != null){
+				int j = 0;
+				for (String cell : line){
+					this.pArrival[i][j] =  Integer.parseInt(cell);
+					j+=1;
+				}
+				i+=1;
+			}
+		} catch(IOException | CsvValidationException e){
+			e.printStackTrace();
+		}
 	}
 	
 	public double grade(Train[] schedule) {
