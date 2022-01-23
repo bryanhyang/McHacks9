@@ -21,13 +21,25 @@ The solving and generation was more involved, and required the breaking down of 
 
 ![SolvedSchedule](https://user-images.githubusercontent.com/50648015/150681549-c42a1b2f-0058-43c4-bd8b-2deb467d0204.png)
 
+We encountered some bugs in the integration with our visualization code here. Specifically some plots given by our schedule generator resulted in some negative passenger values at some times at some stations. This is obviously impossible, but we can confidently attribute it to the 3 extra minutes attributed with the dwelling time a train took at each stop, along with passengers arriving at the station within these three minutes. It is not an issue with the train schedule which remains consistent with all requirements. Future iterations would remedy this bug.
 
-## finalSchedule.csv
 
-### Manual Heuristic
+## Manual Heuristic
+
+### Visualization
 Towards the end of our time in this hackathon one of our group members developed and found a more mathematic manual heuristic for designing a more optimal schedule. Though we have yet to model it computationally, we were able to find and design a schedule that performed better than both our TrainSolution schedule and the provided example schedule. 
 
 ![MelodysSchedule](https://user-images.githubusercontent.com/50648015/150681683-d010961b-fbc9-4360-b000-05a66104ac5a.png)
 
+### Heuristics
+The following is the manual heuristic we designed with respect to the excel visualization we performed:
+
+Let T1,…,T19 represent the respective passenger arrival times. Let Ti represent a general passenger arrival time at Station A. 
+
+The best case wait time for passengers at Station A is 0 minutes where the train arrives exactly at the same time at Ti. Then, after the dwell and transition time to Station B, the train will arrive at Station B at passenger arrival time T(i + 1) and the minimum wait time for passengers that arrive at T(i + 1) is 1 minute.
+
+Lastly, after the dwell and transition time to Station C, the train will arrive at Station C at passenger arrival time T(i + 2) and the minimum wait time for passengers that arrive at T(i + 2) is 3 minutes. This is reflected in the coloured fill pattern of the excel cells where the fill pattern follows a downward-right diagonal pattern. By aiming to maintain this pattern, the wait times can be reduced. However, this pattern is limited due to the limited number of trains, passenger limit for each train and trains that arrive first and last to the scheduled time period.
+
+For the first train, the soonest that the train can arrive to Station B is at 7:11am and the soonest that the train can arrive to Station B is at 7:23. There is no possible way of reducing the wait times for passengers who arrived earlier at Stations B and C. For the last train, it must arrive at the latest passenger arrival time, 10:00am and noticeably, there exists longer wait times for passengers at Station B and Station C. However, this is due to the limited number of trains during the morning commute and as there are less passengers in comparison to the peak commuting time, longer wait times are more acceptable.
 
 
