@@ -46,7 +46,7 @@ public class Writer {
 
 class Parse {
 	public static String parseTime(int t) {
-		int a = t/60;
+		int a = t/60 + 7;
 		int b = t%60;
 		return Integer.toString(a) + ":" + Integer.toString(b);
 	}
