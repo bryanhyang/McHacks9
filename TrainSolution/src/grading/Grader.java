@@ -25,8 +25,10 @@ public class Grader {
 				}
 				i+=1;
 			}
+			read.close();
 		} catch(Exception e){
-			System.out.println("file/directory not found");
+			System.out.println("error with file/directory");
+			e.printStackTrace();
 		}
 	}
 	
@@ -46,21 +48,24 @@ public class Grader {
 				c.add(i*10);
 			}
 		}
-		//iterate through both pArrival and schedule, 
+		//iterate through both pArrival and schedule, assume if a passenger arrives after arrival of train but during dwell time, they can board right away
 		for (int i = 0; i < schedule.length; i++) {
 			Train cur = schedule[i];
-			for (int j = 0; j < schedule[i].aBoard; j++) {
-				int wait = schedule[i].aArr - a.poll();
+			for (int j = 0; j < cur.aBoard; j++) {
+				int wait = cur.aArr - a.poll();
+				if (wait >= -3 && wait < 0) wait = 0;
 				assert wait >= 0;
 				timeWaited += wait;
 			}
-			for (int j = 0; j < schedule[i].bBoard; j++) {
-				int wait = schedule[i].bArr - b.poll();
+			for (int j = 0; j < cur.bBoard; j++) {
+				int wait = cur.bArr - b.poll();
+				if (wait >= -3 && wait < 0) wait = 0;
 				assert wait >= 0;
 				timeWaited += wait;
 			}
-			for (int j = 0; j < schedule[i].cBoard; j++) {
-				int wait = schedule[i].cArr - c.poll();
+			for (int j = 0; j < cur.cBoard; j++) {
+				int wait = cur.cArr - c.poll();
+				if (wait >= -3 && wait < 0) wait = 0;
 				assert wait >= 0;
 				timeWaited += wait;
 			}

@@ -18,9 +18,9 @@ public class TrainSchedule {
 		    	cur = TrainType.L8;
 		    }
 		    t[i] = new Train(cur, 
-		    		CurTime.parseTime(d[2]), Short.parseShort(d[4]),
-		    		CurTime.parseTime(d[5]), Short.parseShort(d[7]),
-		    		CurTime.parseTime(d[8]), Short.parseShort(d[10]) 
+		    		CurTime.parseTime(d[2]), Integer.parseInt(d[4]),
+		    		CurTime.parseTime(d[5]), Integer.parseInt(d[7]),
+		    		CurTime.parseTime(d[8]), Integer.parseInt(d[10]) 
 		    );
 		    i++;
 		}
@@ -34,6 +34,6 @@ class CurTime {
 	public static short parseTime(String s) {
 		//parses string of format h:ss and returns it converted to minutes since 7:00
 		String[] split = s.split(":");
-		return (short) ((short) (Short.parseShort(split[0]) - 7)*60 + Short.parseShort(split[1]));
+		return (short) ((short) (Integer.parseInt(split[0]) - 7)*60 + Integer.parseInt(split[1]));
 	}
 }

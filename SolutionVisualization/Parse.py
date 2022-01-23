@@ -86,8 +86,9 @@ def plot_all(timeline, station_data):
 
 def main():
     # kms
-    station_data = pd.read_csv(r"C:\Users\Bryan\Desktop\Development\_Programming\Java\McHacks9\TrainSolution\assets\in\refSchedule.csv")
-    passengers_arriving = pd.read_csv(r"C:\Users\Bryan\Desktop\Development\_Programming\Java\McHacks9\TrainSolution\assets\in\passengers.csv", names = ("Time", "A", "B", "C"))
+    #station_data = pd.read_csv(r"..\TrainSolution\assets\in\refSchedule.csv")
+    station_data = pd.read_csv(r"..\TrainSolution\assets\out\newSchedule1.csv")
+    passengers_arriving = pd.read_csv(r"..\TrainSolution\assets\in\passengers.csv", names = ("Time", "A", "B", "C"))
     # plot_passengers_pulling_up_to_station(passengers_arriving)
 
     timeline = parse_station_data(station_data, passengers_arriving)
